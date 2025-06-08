@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="我的摄影作品集 - 分享独特的视觉体验">
+    <title>摄影作品集 - 个人网站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modern.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 内联样式修复 -->
+    <style>
+        /* 导航栏修复 */
+        .main-header {
+            background-color: rgba(16, 16, 16, 0.9) !important;
+            backdrop-filter: blur(5px) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .logo, .nav-links a {
+            color: #f8f9fc !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* 页面内容区域修复 - 解决被导航栏遮挡的问题 */
+        .page-header {
+            padding-top: 10rem !important;
+            padding-bottom: 6rem !important;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* 确保导航栏始终显示在其他元素上方 */
+        .main-header {
+            z-index: 1000 !important;
+        }
+        
+        /* 摄影页面特殊样式和文字修复 */
+        .filter-nav li {
+            color: #f8f9fc !important;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-nav li.active, .filter-nav li:hover {
+            background-color: var(--primary-color);
+            color: #fff !important;
+        }
+        
+        .photo-overlay h3, .photo-overlay p {
+            color: #f8f9fc !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+        }
+        
+        .equipment-section h3, .techniques-section h3 {
+            color: #f8f9fc !important;
+        }
+        
+        .equipment-list li, .technique-card p {
+            color: #e0e0e0 !important;
+        }
+        
+        .equipment-name {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        .equipment-detail {
+            color: #e0e0e0 !important;
+        }
+        
+        .technique-card h4 {
+            color: #f8f9fc !important;
+            margin-bottom: 1rem;
+        }
+        
+        /* 光箱样式 */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+            z-index: 2010;
+        }
+        
+        .lightbox-prev, .lightbox-next {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: rgba(53, 80, 255, 0.8);
+        }
+        
+        .photo-info {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+        
+        .photo-info h3 {
+            margin-bottom: 5px;
+        }
+        
+        .photo-info p {
+            opacity: 0.8;
+        }
+        
+        /* 摄影服务区域文字修复 */
+        .interest-content h2, .interest-content p {
+            color: #f8f9fc !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- 导航栏 -->
+    <header class="main-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">ZHANG<span>SAN</span></div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">简介</a></li>
+                    <li><a href="projects.html">项目</a></li>
+                    <li><a href="photography.html" class="active">摄影</a></li>
+                    <li><a href="contact.html">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 摄影页面头部 -->
+    <section class="page-header section-modern dark">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="mega-title-small">摄影<span class="highlight">作品</span></h1>
+                <p class="header-subtitle">通过镜头捕捉瞬间，分享独特的视觉体验</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 摄影分类导航 -->
+    <section class="section-modern">
+        <div class="container">
+            <div class="project-filter">
+                <ul class="filter-nav">
+                    <li data-filter="all" class="active">全部作品</li>
+                    <li data-filter="nature">自然风光</li>
+                    <li data-filter="urban">城市街景</li>
+                    <li data-filter="portrait">人物肖像</li>
+                    <li data-filter="architecture">建筑摄影</li>
+                </ul>
+            </div>
+            
+            <!-- 摄影画廊 -->
+            <div class="photo-gallery-modern full">
+                <!-- 自然风光 -->
+                <div class="photo-item large animate" data-category="nature">
+                    <img src="img/photo1.jpg" alt="山脉日出" onerror="this.src='https://via.placeholder.com/800x600?text=山脉日出'">
+                    <div class="photo-overlay">
+                        <h3>山脉日出</h3>
+                        <p>2023年 · 自然风光</p>
+                        <a href="#" class="photo-link" data-photo="0"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="photo-item medium animate" data-category="nature">
+                    <img src="img/photo2.jpg" alt="森林小径" onerror="this.src='https://via.placeholder.com/600x400?text=森林小径'">
+                    <div class="photo-overlay">
+                        <h3>森林小径</h3>
+                        <p>2023年 · 自然风光</p>
+                        <a href="#" class="photo-link" data-photo="1"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 城市街景 -->
+                <div class="photo-item medium animate" data-category="urban">
+                    <img src="img/photo3.jpg" alt="城市天际线" onerror="this.src='https://via.placeholder.com/600x400?text=城市天际线'">
+                    <div class="photo-overlay">
+                        <h3>城市天际线</h3>
+                        <p>2022年 · 城市街景</p>
+                        <a href="#" class="photo-link" data-photo="2"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="photo-item small animate" data-category="urban">
+                    <img src="img/photo4.jpg" alt="雨中街道" onerror="this.src='https://via.placeholder.com/400x400?text=雨中街道'">
+                    <div class="photo-overlay">
+                        <h3>雨中街道</h3>
+                        <p>2022年 · 城市街景</p>
+                        <a href="#" class="photo-link" data-photo="3"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 人物肖像 -->
+                <div class="photo-item small animate" data-category="portrait">
+                    <img src="img/photo5.jpg" alt="人物剪影" onerror="this.src='https://via.placeholder.com/400x400?text=人物剪影'">
+                    <div class="photo-overlay">
+                        <h3>人物剪影</h3>
+                        <p>2023年 · 人物肖像</p>
+                        <a href="#" class="photo-link" data-photo="4"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="photo-item medium animate" data-category="portrait">
+                    <img src="img/photo6.jpg" alt="自然光人像" onerror="this.src='https://via.placeholder.com/600x400?text=自然光人像'">
+                    <div class="photo-overlay">
+                        <h3>自然光人像</h3>
+                        <p>2022年 · 人物肖像</p>
+                        <a href="#" class="photo-link" data-photo="5"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 建筑摄影 -->
+                <div class="photo-item large animate" data-category="architecture">
+                    <img src="img/photo7.jpg" alt="现代建筑" onerror="this.src='https://via.placeholder.com/800x600?text=现代建筑'">
+                    <div class="photo-overlay">
+                        <h3>现代建筑</h3>
+                        <p>2023年 · 建筑摄影</p>
+                        <a href="#" class="photo-link" data-photo="6"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="photo-item small animate" data-category="architecture">
+                    <img src="img/photo8.jpg" alt="几何构图" onerror="this.src='https://via.placeholder.com/400x400?text=几何构图'">
+                    <div class="photo-overlay">
+                        <h3>几何构图</h3>
+                        <p>2022年 · 建筑摄影</p>
+                        <a href="#" class="photo-link" data-photo="7"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 摄影设备和技巧 -->
+    <section class="section-modern dark">
+        <div class="container">
+            <div class="section-header modern center">
+                <span class="section-tag">我的工具</span>
+                <h2 class="section-title">摄影<span class="accent">装备</span>与技巧</h2>
+                <div class="section-line center"></div>
+            </div>
+            
+            <div class="photography-info">
+                <div class="equipment-section animate">
+                    <h3><i class="fas fa-camera"></i> 主要设备</h3>
+                    <ul class="equipment-list">
+                        <li>
+                            <span class="equipment-name">相机机身:</span>
+                            <span class="equipment-detail">Canon EOS R5 / Sony A7 IV</span>
+                        </li>
+                        <li>
+                            <span class="equipment-name">常用镜头:</span>
+                            <span class="equipment-detail">24-70mm f/2.8 / 70-200mm f/2.8 / 50mm f/1.4</span>
+                        </li>
+                        <li>
+                            <span class="equipment-name">三脚架:</span>
+                            <span class="equipment-detail">Manfrotto 055XPROB</span>
+                        </li>
+                        <li>
+                            <span class="equipment-name">灯光设备:</span>
+                            <span class="equipment-detail">Godox AD200 Pro / Profoto B10</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="techniques-section animate">
+                    <h3><i class="fas fa-lightbulb"></i> 摄影技巧</h3>
+                    <div class="technique-cards">
+                        <div class="technique-card">
+                            <div class="technique-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4>构图法则</h4>
+                            <p>运用三分法则、引导线和自然框架等构图技巧，创造视觉上吸引人的照片。</p>
+                        </div>
+                        
+                        <div class="technique-card">
+                            <div class="technique-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h4>光线掌控</h4>
+                            <p>善于利用自然光和人工光源，掌握黄金时段拍摄和光影效果的创意运用。</p>
+                        </div>
+                        
+                        <div class="technique-card">
+                            <div class="technique-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <h4>后期处理</h4>
+                            <p>使用Adobe Lightroom和Photoshop进行专业的后期调色和修饰，突出照片的艺术表现力。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 摄影服务 -->
+    <section class="section-modern gradient">
+        <div class="container">
+            <div class="interest-content">
+                <h2 class="mega-title-small">需要<span class="highlight">专业</span>摄影服务？</h2>
+                <p>无论是肖像摄影、产品拍摄还是活动记录，我都能为您提供专业的摄影服务。</p>
+                <div class="interest-buttons">
+                    <a href="contact.html" class="btn btn-large btn-white">联系我</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 光箱 -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-close">&times;</div>
+            <img src="" alt="" class="lightbox-image">
+            <div class="lightbox-nav">
+                <div class="lightbox-prev"><i class="fas fa-chevron-left"></i></div>
+                <div class="lightbox-next"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            <div class="photo-info">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">ZHANG<span>SAN</span></div>
+                    <p>创意无限，开发未来</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-link-group">
+                        <h4>导航</h4>
+                        <ul>
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">简介</a></li>
+                            <li><a href="projects.html">项目</a></li>
+                            <li><a href="photography.html">摄影</a></li>
+                            <li><a href="contact.html">联系</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h4>联系方式</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> example@example.com</li>
+                            <li><i class="fas fa-phone"></i> +86 123 4567 8910</li>
+                            <li><i class="fas fa-map-marker-alt"></i> 中国，北京</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 个人网站 - 版权所有</p>
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript文件 -->
+    <script src="js/main.js"></script>
+    <script src="js/modern.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 照片数据
+            const photos = [
+                {
+                    src: "img/photo1.jpg",
+                    alt: "山脉日出",
+                    title: "山脉日出",
+                    description: "2023年 · 自然风光",
+                    placeholder: "https://via.placeholder.com/1200x800?text=山脉日出"
+                },
+                {
+                    src: "img/photo2.jpg",
+                    alt: "森林小径",
+                    title: "森林小径",
+                    description: "2023年 · 自然风光",
+                    placeholder: "https://via.placeholder.com/1200x800?text=森林小径"
+                },
+                {
+                    src: "img/photo3.jpg",
+                    alt: "城市天际线",
+                    title: "城市天际线",
+                    description: "2022年 · 城市街景",
+                    placeholder: "https://via.placeholder.com/1200x800?text=城市天际线"
+                },
+                {
+                    src: "img/photo4.jpg",
+                    alt: "雨中街道",
+                    title: "雨中街道",
+                    description: "2022年 · 城市街景",
+                    placeholder: "https://via.placeholder.com/1200x800?text=雨中街道"
+                },
+                {
+                    src: "img/photo5.jpg",
+                    alt: "人物剪影",
+                    title: "人物剪影",
+                    description: "2023年 · 人物肖像",
+                    placeholder: "https://via.placeholder.com/1200x800?text=人物剪影"
+                },
+                {
+                    src: "img/photo6.jpg",
+                    alt: "自然光人像",
+                    title: "自然光人像",
+                    description: "2022年 · 人物肖像",
+                    placeholder: "https://via.placeholder.com/1200x800?text=自然光人像"
+                },
+                {
+                    src: "img/photo7.jpg",
+                    alt: "现代建筑",
+                    title: "现代建筑",
+                    description: "2023年 · 建筑摄影",
+                    placeholder: "https://via.placeholder.com/1200x800?text=现代建筑"
+                },
+                {
+                    src: "img/photo8.jpg",
+                    alt: "几何构图",
+                    title: "几何构图",
+                    description: "2022年 · 建筑摄影",
+                    placeholder: "https://via.placeholder.com/1200x800?text=几何构图"
+                }
+            ];
+            
+            // 筛选功能
+            const filterButtons = document.querySelectorAll('.filter-nav li');
+            const photoItems = document.querySelectorAll('.photo-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 更新激活状态
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 获取筛选类别
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // 显示/隐藏照片
+                    photoItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, 100);
+                        } else {
+                            item.classList.remove('visible');
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // 光箱功能
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImage = document.querySelector('.lightbox-image');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            const photoLinks = document.querySelectorAll('.photo-link');
+            const photoInfoTitle = document.querySelector('.photo-info h3');
+            const photoInfoDesc = document.querySelector('.photo-info p');
+            
+            let currentPhotoIndex = 0;
+            
+            // 打开光箱
+            photoLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPhotoIndex = parseInt(this.getAttribute('data-photo'));
+                    openLightbox(currentPhotoIndex);
+                });
+            });
+            
+            // 关闭光箱
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+            });
+            
+            // 点击背景关闭光箱
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            
+            // 上一张
+            lightboxPrev.addEventListener('click', () => {
+                currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+                updateLightboxContent(currentPhotoIndex);
+            });
+            
+            // 下一张
+            lightboxNext.addEventListener('click', () => {
+                currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+                updateLightboxContent(currentPhotoIndex);
+            });
+            
+            // 键盘导航
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                } else if (e.key === 'ArrowLeft') {
+                    currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+                    updateLightboxContent(currentPhotoIndex);
+                } else if (e.key === 'ArrowRight') {
+                    currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+                    updateLightboxContent(currentPhotoIndex);
+                }
+            });
+            
+            // 打开光箱
+            function openLightbox(index) {
+                updateLightboxContent(index);
+                lightbox.classList.add('active');
+            }
+            
+            // 更新光箱内容
+            function updateLightboxContent(index) {
+                const photo = photos[index];
+                lightboxImage.src = photo.src;
+                lightboxImage.alt = photo.alt;
+                photoInfoTitle.textContent = photo.title;
+                photoInfoDesc.textContent = photo.description;
+                
+                // 处理图片加载错误
+                lightboxImage.onerror = function() {
+                    this.src = photo.placeholder;
+                };
+            }
+        });
+    </script>
+</body>
+</html> 

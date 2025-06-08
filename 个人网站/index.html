@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="个人网站 - 展示我的技能、项目和联系方式">
+    <title>我的个人网站 - 首页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modern.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 内联样式修复 -->
+    <style>
+        /* 导航栏修复 */
+        .main-header {
+            background-color: rgba(16, 16, 16, 0.9) !important;
+            backdrop-filter: blur(5px) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .logo, .nav-links a {
+            color: #f8f9fc !important;
+        }
+        
+        /* 首页区域修复 */
+        .hero-modern {
+            padding-top: 9rem !important;
+        }
+        
+        /* 确保导航栏始终显示在其他元素上方 */
+        .main-header {
+            z-index: 1000 !important;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- 导航栏 -->
+    <header class="main-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">ZHANG<span>SAN</span></div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="about.html">简介</a></li>
+                    <li><a href="projects.html">项目</a></li>
+                    <li><a href="photography.html">摄影</a></li>
+                    <li><a href="contact.html">联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页区域 - 现代大胆风格 -->
+    <section id="hero" class="hero-modern">
+        <div class="hero-background">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="mega-title"><span class="highlight">创意</span>无限<br>开发<span class="highlight">未来</span></h1>
+                    <p class="hero-subtitle">全栈开发者 & 摄影师 / 专注于创新数字体验</p>
+                    <div class="hero-buttons">
+                        <a href="projects.html" class="btn btn-primary btn-large">探索作品</a>
+                        <a href="contact.html" class="btn btn-outline btn-large">联系我</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="img/profile.jpg" alt="个人照片" class="profile-image clip-path" onerror="this.src='https://via.placeholder.com/500x650?text=创意无限'">
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>向下滚动</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我简介 - 现代卡片设计 -->
+    <section id="intro" class="section-modern">
+        <div class="container">
+            <div class="section-header modern">
+                <span class="section-tag">我的专长</span>
+                <h2 class="section-title">打破界限<span class="accent">创造可能</span></h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="intro-cards">
+                <div class="intro-card modern animate">
+                    <div class="card-number">01</div>
+                    <div class="intro-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web开发</h3>
+                    <p>创建高效、美观且用户友好的网站和应用程序，突破传统设计界限，打造卓越的用户体验。</p>
+                    <a href="about.html" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="intro-card modern animate">
+                    <div class="card-number">02</div>
+                    <div class="intro-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>移动应用</h3>
+                    <p>开发跨平台移动应用，为用户提供直观且流畅的体验，以创新思维推动移动技术的边界。</p>
+                    <a href="projects.html" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="intro-card modern animate">
+                    <div class="card-number">03</div>
+                    <div class="intro-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>摄影创作</h3>
+                    <p>通过独特的视角捕捉生活中的精彩瞬间，用光影和构图讲述令人难忘的视觉故事。</p>
+                    <a href="photography.html" class="read-more">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 精选项目 - 不规则网格布局 -->
+    <section id="featured-projects" class="section-modern dark">
+        <div class="container">
+            <div class="section-header modern right">
+                <span class="section-tag">精选项目</span>
+                <h2 class="section-title">突破<span class="accent">常规</span>的作品</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="projects-modern-grid">
+                <div class="featured-item large animate">
+                    <img src="img/project1.jpg" alt="精选项目1" onerror="this.src='https://via.placeholder.com/800x500?text=突破常规'">
+                    <div class="featured-overlay">
+                        <div class="project-meta">
+                            <span class="project-category">Web开发</span>
+                            <span class="project-year">2023</span>
+                        </div>
+                        <h3>电子商务平台</h3>
+                        <p>全功能响应式电商网站，重新定义线上购物体验</p>
+                        <a href="projects.html" class="btn btn-sm">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="featured-item small animate">
+                    <img src="img/project2.jpg" alt="精选项目2" onerror="this.src='https://via.placeholder.com/400x600?text=创新设计'">
+                    <div class="featured-overlay">
+                        <div class="project-meta">
+                            <span class="project-category">移动应用</span>
+                            <span class="project-year">2023</span>
+                        </div>
+                        <h3>社交媒体应用</h3>
+                        <p>移动端社交应用开发</p>
+                        <a href="projects.html" class="btn btn-sm">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="featured-item medium animate">
+                    <img src="img/project3.jpg" alt="精选项目3" onerror="this.src='https://via.placeholder.com/600x400?text=视觉冲击'">
+                    <div class="featured-overlay">
+                        <div class="project-meta">
+                            <span class="project-category">UI设计</span>
+                            <span class="project-year">2022</span>
+                        </div>
+                        <h3>健康追踪应用</h3>
+                        <p>创新界面设计，简化健康管理</p>
+                        <a href="projects.html" class="btn btn-sm">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="center-btn">
+                <a href="projects.html" class="btn btn-outline btn-large btn-with-icon">
+                    <span>查看所有项目</span>
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 精选照片 - 动态画廊 -->
+    <section id="featured-photos" class="section-modern">
+        <div class="container">
+            <div class="section-header modern">
+                <span class="section-tag">视觉艺术</span>
+                <h2 class="section-title">捕捉<span class="accent">独特</span>瞬间</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="photo-gallery-modern">
+                <div class="photo-item large animate">
+                    <img src="img/photo1.jpg" alt="照片1" onerror="this.src='https://via.placeholder.com/800x600?text=大自然之美'">
+                    <div class="photo-overlay">
+                        <h3>山脉日出</h3>
+                        <a href="photography.html" class="photo-link"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                <div class="photo-item small animate">
+                    <img src="img/photo2.jpg" alt="照片2" onerror="this.src='https://via.placeholder.com/400x600?text=城市街景'">
+                    <div class="photo-overlay">
+                        <h3>城市天际线</h3>
+                        <a href="photography.html" class="photo-link"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                <div class="photo-item medium animate">
+                    <img src="img/photo3.jpg" alt="照片3" onerror="this.src='https://via.placeholder.com/600x400?text=人物肖像'">
+                    <div class="photo-overlay">
+                        <h3>人物剪影</h3>
+                        <a href="photography.html" class="photo-link"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+                <div class="photo-item small animate">
+                    <img src="img/photo4.jpg" alt="照片4" onerror="this.src='https://via.placeholder.com/400x400?text=建筑细节'">
+                    <div class="photo-overlay">
+                        <h3>建筑几何</h3>
+                        <a href="photography.html" class="photo-link"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="center-btn">
+                <a href="photography.html" class="btn btn-outline btn-large btn-with-icon">
+                    <span>浏览全部作品</span>
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数字与成就 -->
+    <section id="stats" class="section-modern dark">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item animate">
+                    <div class="stat-number" data-count="42">0</div>
+                    <div class="stat-title">完成项目</div>
+                </div>
+                <div class="stat-item animate">
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-title">获奖作品</div>
+                </div>
+                <div class="stat-item animate">
+                    <div class="stat-number" data-count="5">0</div>
+                    <div class="stat-title">年行业经验</div>
+                </div>
+                <div class="stat-item animate">
+                    <div class="stat-number" data-count="18">0</div>
+                    <div class="stat-title">合作伙伴</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式简介 -->
+    <section id="contact-intro" class="section-modern gradient">
+        <div class="container">
+            <div class="contact-intro-content">
+                <h2 class="mega-title-small">让我们<span class="highlight">合作</span>创造精彩</h2>
+                <p>无论您有任何问题、合作意向或者只是想打个招呼，都欢迎随时联系我。</p>
+                <a href="contact.html" class="btn btn-large btn-white">联系我</a>
+                
+                <div class="contact-social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">ZHANG<span>SAN</span></div>
+                    <p>创意无限，开发未来</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-link-group">
+                        <h4>导航</h4>
+                        <ul>
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">简介</a></li>
+                            <li><a href="projects.html">项目</a></li>
+                            <li><a href="photography.html">摄影</a></li>
+                            <li><a href="contact.html">联系</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h4>联系方式</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope"></i> example@example.com</li>
+                            <li><i class="fas fa-phone"></i> +86 123 4567 8910</li>
+                            <li><i class="fas fa-map-marker-alt"></i> 中国，北京</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 个人网站 - 版权所有</p>
+                <a href="#hero" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript文件 -->
+    <script src="js/main.js"></script>
+    <script src="js/modern.js"></script>
+</body>
+</html> 

@@ -1,0 +1,31 @@
+此目录用于存放网站图片。
+您可以在此目录中添加以下图片文件：
+
+一、基础图片
+1. hero-bg.jpg - 首页背景图片
+2. header-bg.jpg - 各页面顶部背景图片
+3. profile.jpg - 个人头像照片
+
+二、项目图片
+1. project1.jpg, project2.jpg, project3.jpg - 主要项目展示图片
+2. project4.jpg, project5.jpg, project6.jpg - 更多项目展示图片
+
+三、摄影作品
+1. photo1.jpg - 山脉日出照片
+2. photo2.jpg - 海岸线照片
+3. photo3.jpg - 城市天际线照片
+4. photo4.jpg - 建筑几何照片
+5. photo5.jpg - 自然光人像照片
+6. photo6.jpg - 人物剪影照片
+7. photo7.jpg - 街头瞬间照片
+8. photo8.jpg - 雨中漫步照片
+9. photo9.jpg - 森林小径照片
+
+四、背景图片
+1. contact-bg.jpg - 联系区域背景图片
+2. collaborate-bg.jpg - 合作邀请背景图片
+3. resume-bg.jpg - 简历下载背景图片
+4. photo-services-bg.jpg - 摄影服务背景图片
+5. contact-cta-bg.jpg - 联系号召背景图片
+
+您可以使用自己的图片替换这些占位图片，或者继续使用网站中的自动占位图片功能。 
